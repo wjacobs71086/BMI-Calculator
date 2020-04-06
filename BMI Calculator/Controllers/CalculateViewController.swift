@@ -2,13 +2,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculateViewController: UIViewController {
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
-    
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var weightSlider: UISlider!
     
+    var calculator = Calculator()
+    var rounded: String?
     
     @IBAction func heightSliderChange(_ sender: UISlider) {
         // the slider will represent Inches and the DISPLAY will show the ft and in
@@ -29,18 +30,17 @@ class ViewController: UIViewController {
 
     @IBAction func calculatePressed(_ sender: UIButton) {
         
-        let height = pow(heightSlider.value, 2)
-        let weight = weightSlider.value
-        let BMI = (weight / height) * 703
-        let rounded = String(format: "%.1f", BMI)
+        calculator.calculateBMI(height: heightSlider.value, weight: weightSlider.value)
+        self.performSegue(withIdentifier: "goToResults", sender: self)
         
-        print(rounded)
-       
-        let secondVC = SecondViewController()
-        // we created a blank value on the secondViewController object and we can simply add that value here
-        secondVC.bmiValue = rounded
-        self.present(secondVC, animated: true, completion: nil)
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResults" {
+            // because we are overriding the class and including a special version of prepare. This is "Downcasting" changing the class from UI ViewController to ResultViewController
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.bmiValue = calculator.getBMIValue()
+        }
     }
     
 }
