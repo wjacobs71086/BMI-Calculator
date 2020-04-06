@@ -1,3 +1,5 @@
+
+
 import UIKit
 
 class ResultViewController: UIViewController {
@@ -5,6 +7,8 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var bmiLabel: UILabel!
     @IBOutlet weak var adviseLabel: UILabel!
     var bmiValue: String?
+    var advice: String?
+    var color: UIColor?
     
     override func viewDidLoad() {
         super.viewDidLoad()

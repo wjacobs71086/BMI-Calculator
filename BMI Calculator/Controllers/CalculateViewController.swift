@@ -40,6 +40,8 @@ class CalculateViewController: UIViewController {
             // because we are overriding the class and including a special version of prepare. This is "Downcasting" changing the class from UI ViewController to ResultViewController
             let destinationVC = segue.destination as! ResultViewController
             destinationVC.bmiValue = calculator.getBMIValue()
+            destinationVC.advice = calculator.getAdvice()
+            destinationVC.color = calculator.getColor()
         }
     }
     
