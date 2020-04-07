@@ -6,7 +6,7 @@ class ResultViewController: UIViewController {
 
     @IBOutlet weak var bmiLabel: UILabel!
     @IBOutlet weak var adviseLabel: UILabel!
-    @IBOutlet weak var backgroundColor: UIImageView!
+
     var bmiValue: String?
     var advice: String?
     var color: UIColor?
@@ -16,7 +16,7 @@ class ResultViewController: UIViewController {
         // Do any additional setup after loading the view.
         bmiLabel.text = bmiValue
         adviseLabel.text = advice
-        backgroundColor.backgroundColor = color
+        view.backgroundColor = color
     }
     
 
